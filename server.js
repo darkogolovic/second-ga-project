@@ -10,7 +10,7 @@ const authController = require('./controllers/auth.js');
 
 
 
-//midleware
+//midlleware
 
 app.use(express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -31,8 +31,9 @@ app.use(
 
 
 app.get('/',(req,res)=>{
-    res.send('Welcome s')
+    res.render('index.ejs')
 })
+app.use('/',authController)
 
 app.listen(port,()=>{
     console.log(`Server running on port: ${port}`)

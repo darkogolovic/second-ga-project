@@ -1,0 +1,34 @@
+.header{
+    padding: 1rem;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-container {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.search-field{
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2rem;
+    
+}
+.search-field input{
+    
+    width: 100%;
+    display: block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+}
