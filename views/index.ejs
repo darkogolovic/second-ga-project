@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styling/global.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styling/index.css">
     <title>Document</title>
-</head>
-<body>
-    <div class="container">
-    <%- include("./partials/header.ejs") %>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+<main class="main-container">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Fresh Fruits & Vegetables</h1>
+      <p>Shop the freshest produce directly from local farms to your doorstep!</p>
+      <a href="/products" class="hero-btn">Shop Now</a>
     </div>
-</body>
+    <div class="hero-image">
+      <img src="/images/hero-fruits.png" alt="Fresh fruits and vegetables">
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  
+
+</main>
+
+
+
+  </body>
 </html>

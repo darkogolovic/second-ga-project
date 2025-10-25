@@ -28,6 +28,10 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 
 app.get('/',(req,res)=>{

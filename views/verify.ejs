@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Verification</title>
+  <link rel="stylesheet" href="styling/forms.css" />
 </head>
 <body>
-      <form action="/verify" method="post" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
-    <input 
-      type="email" 
-      name="email" 
-      value="<%= email %>" 
-      placeholder="Email" 
-      required 
-      readonly 
-      style="padding: 10px; font-size: 16px;"
-    >
-    <input 
-      type="text" 
-      name="code" 
-      placeholder="6-digit code" 
-      required 
-      maxlength="6"
-      style="padding: 10px; font-size: 16px; text-align: center;"
-    >
-    <button type="submit" style="padding: 10px; font-size: 16px; cursor: pointer;">Verify</button>
-  </form>
 
-  <p style="margin-top: 20px;">
-    Didn't receive the code? <a href="/resend">Resend Code</a>
-  </p>
-</div>
+  <div class="login-container">
+    <h1 class="login-title">Verify Your Email</h1>
+
+    <p class="verify-info">
+      We've sent a 6-digit code to your email <strong><%= email %></strong>.
+      Please enter it below to verify your account.
+    </p>
+
+    <% if (error) { %>
+      <div class="error-message"><%= error %></div>
+    <% } %>
+
+    <form action="/verify" method="POST" class="login-form">
+      <input type="hidden" name="email" value="<%= email %>" />
+
+      <div class="form-group">
+        <label for="code" class="form-label">Verification Code</label>
+        <input type="text" id="code" name="code" class="form-input" maxlength="6" required />
+      </div>
+
+      <button type="submit" class="login-btn">Verify</button>
+    </form>
+
+    <form action="/resend" method="POST" class="resend-form">
+      <input type="hidden" name="email" value="<%= email %>" />
+      <button type="submit" class="resend-btn">Resend Code</button>
+    </form>
+
+    <p class="register-link">
+      Already verified? <a href="/login">Go to Login</a>
+    </p>
+  </div>
+
 </body>
 </html>

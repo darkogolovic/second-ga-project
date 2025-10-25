@@ -4,24 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/de7d19d756.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/styling/global.css">
     <link rel="stylesheet" href="/styling/header.css">
     <title>Document</title>
 </head>
 <body>
     <header class="header">
-    <h1>PILJARA</h1>
+    <h1 class="logo">PILJARA</h1>
+
+    <!-- Search -->
     <div class="search-container">
-        <label for="search"></label>
+        <label for="search" class="sr-only">Search</label>
         <div class="search-field">
-            <input type="text" id="search">
+            <input type="text" id="search" placeholder="Search products...">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
     </div>
-    <div>
-        <a>Log in</a>
-        <a>Register</a>
-    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-links">
+        <% if (!user) { %>
+            <a href="/login" class="btn-login">Log in</a>
+            <a href="/register" class="btn-login">Register</a>
+        <% } else { %>
+            <% if (user.role === 'admin') { %>
+                <a href="/admin/add" class="btn-admin">Add Product</a>
+                <a href="/admin/users" class="btn-admin">Users</a>
+            <% } %>
+            <span class="welcome-msg">Hi, <%= user.name %>!</span>
+            <a href="/logout" class="btn-logout">Logout</a>
+        <% } %>
+            </nav>
 </header>
 
 

@@ -1,34 +1,105 @@
-.header{
-    padding: 1rem;
-    display:flex;
-    justify-content: space-between;
+.header {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #fff8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
 }
+
+.logo {
+    font-size: 1.8rem;
+    color: #27ae60;
+    font-weight: bold;
+}
+
 .search-container {
-    height: 2.5rem;
+    flex: 1 1 300px;
+    margin: 0 2rem;
+}
+
+.search-field {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 40%;
-    border: 1px solid black;
-    border-radius: 20px;
-    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 0.3rem 1rem;
+    background: #fff;
 }
-.search-field{
-    height: 100%;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.2rem;
-    
-}
-.search-field input{
-    
-    width: 100%;
-    display: block;
-    background-color: transparent;
+
+.search-field input {
     border: none;
     outline: none;
-    font-size: 0.9rem;
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 25px;
+}
+
+.search-field i {
+    color: #888;
+    margin-left: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-login, .btn-admin, .btn-logout {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-login {
+    background-color: #27ae60;
+}
+
+.btn-login:hover {
+    background-color: #219150;
+}
+
+.btn-admin {
+    background-color: #f39c12;
+}
+
+.btn-admin:hover {
+    background-color: #d98209;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+.welcome-msg {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-container {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
 }

@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user.js");
 const nodemailer = require("nodemailer");
+const bcrypt = require('bcrypt')
 
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     const exists = await User.findOne({ email });
@@ -135,5 +136,60 @@ router.get("/resend/:email", async (req, res) => {
     res.redirect(`/verify?email=${encodeURIComponent(email)}&msg=Something went wrong`);
   }
 });
+
+router.get('/login',(req,res)=>{
+  if(req.session.user) res.redirect('/')
+  res.render('login.ejs',{
+    error : null
+  })
+})
+
+router.post('/login',async (req,res)=>{
+  try{
+    const {email,password}= req.body;
+    const user = await User.findOne({email});
+    if(!user) {
+      return res.render('login.ejs',{error: 'User not found' })
+    }
+    if(!user.isVerified){
+      return res.render('login.ejs',{error: 'User is not verified'})
+    }
+
+    const isMatch = await bcrypt.compare(password,user.password);
+
+    if(!isMatch){
+      return res.render('login.ejs',{
+        error: 'Password inccorect'
+      })
+    }
+
+    req.session.user = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+
+   return res.redirect('/')
+
+  }catch(error){
+    console.error(error)
+
+    return res.render('login.ejs',{
+
+      error:'Something went wrong.'
+    })
+  }
+})
+
+router.get('/logout',(req,res)=>{
+  req.session.destroy((error)=>{
+    if(error){
+      return res.redirect('/')
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/login')
+  })
+})
 
 module.exports = router;
