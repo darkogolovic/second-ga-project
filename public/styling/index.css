@@ -1,4 +1,4 @@
-/* Global */
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f5f9f7;
@@ -6,7 +6,7 @@ body {
   color: #333;
 }
 
-/* Hero Section */
+
 .hero {
   display: flex;
   flex-wrap: wrap;
@@ -57,7 +57,7 @@ body {
   border-radius: 16px;
 }
 
-/* Products Grid */
+
 .products-section {
   padding: 2rem;
   max-width: 1200px;
@@ -121,7 +121,7 @@ body {
   background: #219150;
 }
 
-/* Footer */
+
 .footer {
   background: #27ae60;
   color: #fff;
@@ -130,7 +130,7 @@ body {
   margin-top: 2rem;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
