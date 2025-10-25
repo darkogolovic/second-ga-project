@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.admin-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.admin-section {
+  margin-bottom: 3rem;
+}
+.admin-section h2{
+  margin-bottom: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-add, .btn-edit, .btn-delete {
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  border-radius: 4px;
+  color: white;
+  margin-right: 0.3rem;
+}
+
+.btn-add { background: #27ae60; }
+.btn-edit { background: #f39c12; }
+.btn-delete { background: #e74c3c; }

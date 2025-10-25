@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styling/addEditProduct.css">
+  <title>Add Product</title>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add New Product</h2>
+    <form action="/admin/add-product" method="POST">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input type="number" name="price" id="price" step="0.01" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+          <option value="fruits">Fruits</option>
+          <option value="vegetables">Vegetables</option>
+          <option value="dairy">Dairy</option>
+        </select>
+      </div>
+
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+</body>
+</html>

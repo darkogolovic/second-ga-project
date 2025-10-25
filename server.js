@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const path = require('path')
 const authController = require('./controllers/auth.js');
+const adminController = require('./controllers/admin.js')
 
 
 
@@ -38,6 +39,7 @@ app.get('/',(req,res)=>{
     res.render('index.ejs')
 })
 app.use('/',authController)
+app.use('/admin',adminController)
 
 app.listen(port,()=>{
     console.log(`Server running on port: ${port}`)

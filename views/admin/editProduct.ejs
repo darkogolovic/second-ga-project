@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styling/addEditProduct.css">
+  <title>Edit Product</title>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Edit Product</h2>
+    <form action="/admin/edit/<%= product._id %>?_method=PUT" method="POST">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" name="name" id="name" value="<%= product.name %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input type="number" name="price" id="price" value="<%= product.price %>" step="0.01" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="4"><%= product.description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+          <option value="fruits" <%= product.category === 'fruits' ? 'selected' : '' %>>Fruits</option>
+          <option value="vegetables" <%= product.category === 'vegetables' ? 'selected' : '' %>>Vegetables</option>
+          
+        </select>
+      </div>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</body>
+</html>

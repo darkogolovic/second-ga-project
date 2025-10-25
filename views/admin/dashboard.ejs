@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styling/admin.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+<main class="admin-container">
+  <h1>Admin Dashboard</h1>
+
+  <section class="admin-section">
+    <h2>Products</h2>
+    <a href="/admin/add" class="btn-add">Add New Product</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><%= p.name %></td>
+            <td>$<%= p.price %></td>
+            <td><%= p.category %></td>
+            <td><%= p.quantity %></td>
+            <td>
+              <a href="/admin/edit/<%= p._id %>" class="btn-edit">Edit</a>
+              <a href="/admin/delete/<%= p._id %>" class="btn-delete" onclick="return confirm('Delete this product?')">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="admin-section">
+    <h2>Users</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Verified</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.role %></td>
+            <td><%= u.isVerified ? 'Yes' : 'No' %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

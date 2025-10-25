@@ -9,31 +9,36 @@
 </head>
 <body>
     <header class="header">
-    <h1 class="logo">PILJARA</h1>
+  <div class="header-left">
+    <h1 class="logo"><a href="/">PILJARA</a></h1>
+  </div>
 
-    <!-- Search -->
-    <div class="search-container">
-        <label for="search" class="sr-only">Search</label>
-        <div class="search-field">
-            <input type="text" id="search" placeholder="Search products...">
-            <i class="fa-solid fa-magnifying-glass"></i>
+  <div class="header-right">
+    <% if (!user) { %>
+      <a href="/login" class="btn btn-login">Log in</a>
+      <a href="/register" class="btn btn-register">Register</a>
+    <% } else { %>
+      <% if (user.role === 'admin') { %>
+        <div class="dropdown">
+          <button class="btn btn-admin">Admin ▼</button>
+          <div class="dropdown-content">
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/add">Add Product</a>
+            <a href="/admin/users">Users</a>
+          </div>
         </div>
-    </div>
+      <% } %>
 
-    <!-- Navigation -->
-    <nav class="nav-links">
-        <% if (!user) { %>
-            <a href="/login" class="btn-login">Log in</a>
-            <a href="/register" class="btn-login">Register</a>
-        <% } else { %>
-            <% if (user.role === 'admin') { %>
-                <a href="/admin/add" class="btn-admin">Add Product</a>
-                <a href="/admin/users" class="btn-admin">Users</a>
-            <% } %>
-            <span class="welcome-msg">Hi, <%= user.name %>!</span>
-            <a href="/logout" class="btn-logout">Logout</a>
-        <% } %>
-            </nav>
+      <a href="/cart" class="btn btn-cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
+
+      <span class="welcome-msg">Hi, <%= user.name %>!</span>
+      <a href="/logout" class="btn btn-logout">Logout</a>
+    <% } %>
+  </div>
 </header>
+
 
 
