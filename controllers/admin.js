@@ -3,6 +3,9 @@ const router = express.Router();
 const Product = require('../models/product.js');
 const User = require('../models/user.js');
 const { isAdmin } = require('../middleware/authMiddleware.js');
+const { cloudinary } = require('../config/cloudinary.js');
+const upload = require('../config/multer.js');
+const fs = require('fs')
 
 
 router.get('/dashboard', isAdmin, async (req, res) => {
@@ -17,10 +20,26 @@ router.get('/add', isAdmin, (req, res) => {
 });
 
 
-router.post('/add', isAdmin, async (req, res) => {
-  const { name, description, price, category, image, quantity } = req.body;
-  await Product.create({ name, description, price, category, image, quantity });
-  res.redirect('/admin/dashboard');
+router.post('/add', isAdmin,upload.single('image'), async (req, res) => {
+  try{
+    console.log(req.body)
+  const { name, description, price, category,quantity, } = req.body;
+  const uploadResult = await cloudinary.uploader.upload(req.file.path);
+   const newProduct = new Product({
+      name,
+      description,
+      price,
+      quantity,
+      category,
+      image: uploadResult.secure_url
+    });
+    newProduct.save()
+    fs.unlinkSync(req.file.path);
+    res.redirect('/admin/dashboard')
+  } catch(error){
+    console.error(error);
+    res.status(500).send('Errod adding product');
+  }
 });
 
 

@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ["Fruit", "Vegetable", "Other"],
+    enum: ["Fruit", "Vegetable"],
     default: "Fruit",
   },
   price: {

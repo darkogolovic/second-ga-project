@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^1.41.3",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
@@ -8,6 +9,8 @@
     "method-override": "^3.0.0",
     "mongodb": "^6.20.0",
     "mongoose": "^8.19.2",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^7.0.10",
     "nodemon": "^3.1.10"
   },

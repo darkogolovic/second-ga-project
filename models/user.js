@@ -29,6 +29,7 @@ const userSchema = mongoose.Schema({
     },
     verificationCode: String,
     codeExpires: Date,
+    
 
 })
 
