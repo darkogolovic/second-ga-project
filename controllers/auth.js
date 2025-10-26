@@ -27,7 +27,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role,address } = req.body;
 
   try {
     const exists = await User.findOne({ email });
@@ -41,6 +41,7 @@ router.post("/register", async (req, res) => {
       email,
       password, 
       role,
+      address,
       verificationCode: code,
       codeExpires: new Date(Date.now() + 10 * 60 * 1000),
       isVerified: false,
@@ -167,6 +168,7 @@ router.post('/login',async (req,res)=>{
       id: user._id,
       name: user.name,
       email: user.email,
+      address: user.address,
       role: user.role,
     };
 
@@ -188,7 +190,7 @@ router.get('/logout',(req,res)=>{
       return res.redirect('/')
     }
     res.clearCookie('connect.sid');
-    res.redirect('/login')
+    res.redirect('/')
   })
 })
 

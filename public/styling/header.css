@@ -20,7 +20,7 @@
   gap: 1rem;
 }
 
-/* BUTTONS */
+
 .btn {
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -42,7 +42,7 @@
 .btn-admin { background-color: #ed8936; }
 .btn-admin:hover { background-color: #dd6b20; }
 
-/* DROPDOWN */
+
 .dropdown {
   position: relative;
 }
@@ -75,7 +75,7 @@
   display: block;
 }
 
-/* CART */
+
 .btn-cart {
   position: relative;
   background-color: #38b2ac;
@@ -103,10 +103,11 @@
   align-items: center;
 }
 
-/* WELCOME MSG */
-.welcome-msg { margin-left: 0.5rem; font-weight: 500; }
+.welcome-msg {
+   margin-left: 0.5rem;
+    font-weight: 500;
+   }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

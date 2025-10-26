@@ -8,6 +8,7 @@ const session = require('express-session');
 const path = require('path')
 const authController = require('./controllers/auth.js');
 const adminController = require('./controllers/admin.js')
+const Product = require('./models/product.js')
 
 
 
@@ -35,8 +36,11 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/',(req,res)=>{
-    res.render('index.ejs')
+app.get('/', async (req,res)=>{
+  const products = await Product.find();
+    res.render('index.ejs',{
+      products
+    })
 })
 app.use('/',authController)
 app.use('/admin',adminController)

@@ -54,7 +54,7 @@ option:hover{
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  border-color: #27ae60;
+  border-color: #219150;
   outline: none;
 }
 

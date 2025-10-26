@@ -3,32 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styling/index.css">
+    <link rel="stylesheet" href="styling/index.css" />
     <title>Document</title>
   </head>
   <body>
     <%- include('partials/header') %>
 
-<main class="main-container">
-
- 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Fresh Fruits & Vegetables</h1>
-      <p>Shop the freshest produce directly from local farms to your doorstep!</p>
-      <a href="/products" class="hero-btn">Shop Now</a>
-    </div>
-    <div class="hero-image">
-      <img src="Images/landing-page-img.jpg" alt="Fresh fruits and vegetables">
-    </div>
-  </section>
-
-  <!--  Products -->
-  
-
-</main>
-
-
-
+    <main class="main-container">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Fresh Fruits & Vegetables</h1>
+          <p>
+            Shop the freshest produce directly from local farms to your
+            doorstep!
+          </p>
+          <a href="/products" class="hero-btn">Shop Now</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="Images/landing-page-img.jpg"
+            alt="Fresh fruits and vegetables"
+          />
+        </div>
+      </section>
+      <section class="products-section">
+        <h2>Some of Our Products:</h2>
+        <div class="products-grid">
+          <% for (let i = 0; i < 6; i++) { %> <% if (products[i]) { %>
+          <div class="product-card">
+            <img src="<%= products[i].image %>" alt="<%= products[i].name %>" />
+            <h3><%= products[i].name %></h3>
+            <p class="price">$<%= products[i].price.toFixed(2) %></p>
+            <a href="/cart/add/<%= products[i]._id %>" class="btn-add"
+              >Add to Cart</a
+            >
+          </div>
+          <% } %> <% } %>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
   </body>
 </html>
