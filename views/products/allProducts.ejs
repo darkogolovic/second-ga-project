@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Products</title>
-  <link rel="stylesheet" href="/styling/allProducts.css" />
-</head>
-<body>
-  <%- include('../partials/header.ejs') %>
-
-  <main class="products-section">
-  <h1>Fresh & Organic Products</h1>
-
-  <% if (products.length === 0) { %>
-    <p class="no-products">No products available right now 🍃</p>
-  <% } else { %>
-    <div class="product-wrapper">
-      <% products.forEach(product => { %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Products</title>
+    <link rel="stylesheet" href="/styling/allProducts.css" />
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+    <h1>Fresh & Organic Products</h1>
+    <main class="products-section">
+      <% if (products.length === 0) { %>
+      <p class="no-products">No products available right now 🍃</p>
+      <% } else { %>
+      <div class="product-wrapper">
+        <% products.forEach(product => { %>
         <div class="product-tile">
           <div class="product-img">
-            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <img src="<%= product.image %>" alt="<%= product.name %>" />
           </div>
 
           <div class="product-body">
@@ -27,36 +25,39 @@
             <p class="product-category"><%= product.category %></p>
 
             <div class="product-details">
-              <span class="product-price">$<%= product.price.toFixed(2) %> / kg</span>
-              <span class="product-stock">Available: <%= product.quantity %> kg</span>
+              <span class="product-price"
+                >$<%= product.price.toFixed(2) %> / kg</span
+              >
+              <span class="product-stock"
+                >Available: <%= product.quantity %> kg</span
+              >
             </div>
 
             <p class="product-desc"><%= product.description %></p>
 
             <div class="product-buy">
               <label for="kg-<%= product._id %>">Select kg:</label>
-              <input 
-                type="number" 
-                id="kg-<%= product._id %>" 
-                name="quantity" 
-                min="0.1" 
-                max="<%= product.quantity %>" 
-                step="0.1" 
+              <input
+                type="number"
+                id="kg-<%= product._id %>"
+                name="quantity"
+                min="0.1"
+                max="<%= product.quantity %>"
+                step="0.1"
                 value="1"
                 class="quantity-input"
-              >
+              />
               <button class="add-btn">
                 <i class="fa-solid fa-cart-plus"></i> Add to Cart
               </button>
             </div>
           </div>
         </div>
-      <% }) %>
-    </div>
-  <% } %>
-</main>
+        <% }) %>
+      </div>
+      <% } %>
+    </main>
 
-
-  <%- include('../partials/footer.ejs') %>
-</body>
+    <%- include('../partials/footer.ejs') %>
+  </body>
 </html>
