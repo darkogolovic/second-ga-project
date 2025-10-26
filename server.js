@@ -9,7 +9,7 @@ const path = require('path')
 const authController = require('./controllers/auth.js');
 const adminController = require('./controllers/admin.js')
 const Product = require('./models/product.js')
-
+const productController = require('./controllers/products.js')
 
 
 //midlleware
@@ -22,7 +22,7 @@ mongoose.connection.on('connected', () => {
 });
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-// app.use(morgan('dev'));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -44,6 +44,7 @@ app.get('/', async (req,res)=>{
 })
 app.use('/',authController)
 app.use('/admin',adminController)
+app.use('/products',productController)
 
 app.listen(port,()=>{
     console.log(`Server running on port: ${port}`)
