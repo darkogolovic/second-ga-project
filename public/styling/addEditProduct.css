@@ -76,6 +76,12 @@ button:hover {
   background-color: #219150;
 }
 
+.price-quantity{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (max-width: 600px) {
   .form-container {
     padding: 1.5rem;

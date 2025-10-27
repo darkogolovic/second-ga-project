@@ -10,6 +10,7 @@ const authController = require('./controllers/auth.js');
 const adminController = require('./controllers/admin.js')
 const Product = require('./models/product.js')
 const productController = require('./controllers/products.js')
+const cartController = require('./controllers/cart.js')
 
 
 //midlleware
@@ -45,6 +46,7 @@ app.get('/', async (req,res)=>{
 app.use('/',authController)
 app.use('/admin',adminController)
 app.use('/products',productController)
+app.use('/cart',cartController)
 
 app.listen(port,()=>{
     console.log(`Server running on port: ${port}`)

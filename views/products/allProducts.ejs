@@ -35,7 +35,8 @@
 
             <p class="product-desc"><%= product.description %></p>
 
-            <div class="product-buy">
+            <form class="product-buy" action="/cart/add" method="POST">
+              <input type="hidden" name="productId" value="<%= product._id %>">
               <label for="kg-<%= product._id %>">Select kg:</label>
               <input
                 type="number"
@@ -50,7 +51,7 @@
               <button class="add-btn">
                 <i class="fa-solid fa-cart-plus"></i> Add to Cart
               </button>
-            </div>
+            </form>
           </div>
         </div>
         <% }) %>

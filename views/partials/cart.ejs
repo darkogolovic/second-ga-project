@@ -1,0 +1,111 @@
+
+<div class="cart-modal" id="cartModal">
+  <div class="cart-content">
+    <span class="close-cart" id="closeCart">&times;</span>
+    <h2>Your Cart</h2>
+
+    <% if (cart.length === 0) { %>
+      <p class="empty-cart">Your cart is empty.</p>
+    <% } else { %>
+      <ul class="cart-list">
+        <% let total = 0; %>
+        <% cart.forEach(item => { 
+             const subtotal = item.quantity * item.product.price;
+             total += subtotal;
+        %>
+          <li class="cart-item">
+            <div class="cart-info">
+              <h4><%= item.product.name %></h4>
+              <p><%= item.quantity %> kg × $<%= item.product.price.toFixed(2) %></p>
+              <strong>$<%= subtotal.toFixed(2) %></strong>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+      <div class="cart-footer">
+        <p class="total">Total: <strong>$<%= total.toFixed(2) %></strong></p>
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
+      </div>
+    <% } %>
+  </div>
+</div>
+<style>
+    .cart-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-content {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-cart {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+
+.cart-info h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.checkout-btn:hover {
+  background-color: #45a049;
+}
+
+.empty-cart {
+  text-align: center;
+  color: #777;
+  padding: 1rem;
+}
+
+</style>
+
