@@ -27,7 +27,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { name, email, password, role,address } = req.body;
+  const { name, email, password, role,address,cart} = req.body;
 
   try {
     const exists = await User.findOne({ email });
@@ -45,6 +45,7 @@ router.post("/register", async (req, res) => {
       verificationCode: code,
       codeExpires: new Date(Date.now() + 10 * 60 * 1000),
       isVerified: false,
+      cart: cart
     });
 
     await user.save();
@@ -74,9 +75,6 @@ router.get("/verify", (req, res) => {
 });
 
 
-router.get("/verify", (req, res) => {
-  res.render("verify.ejs", { error: null, email: "" });
-});
 
 router.post("/verify", async (req, res) => {
   const { email, code } = req.body;
@@ -115,7 +113,7 @@ router.get("/resend/:email", async (req, res) => {
     
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     user.verificationCode = code;
-    user.codeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minuta
+    user.codeExpires = new Date(Date.now() + 10 * 60 * 1000); 
     await user.save();
 
     
@@ -170,7 +168,9 @@ router.post('/login',async (req,res)=>{
       email: user.email,
       address: user.address,
       role: user.role,
+      cart:user.cart,
     };
+    
 
    return res.redirect('/')
 
