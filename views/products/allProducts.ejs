@@ -9,6 +9,17 @@
   <body>
     <%- include('../partials/header.ejs') %>
     <h1>Fresh & Organic Products</h1>
+
+    <!-- 🔍 Search bar -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products by name or category..."
+        class="search-input"
+      />
+    </div>
+
     <main class="products-section">
       <% if (products.length === 0) { %>
       <p class="no-products">No products available right now 🍃</p>
@@ -60,5 +71,26 @@
     </main>
 
     <%- include('../partials/footer.ejs') %>
+
+    <!-- 🔍 Search logic -->
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const productTiles = document.querySelectorAll(".product-tile");
+
+      searchInput.addEventListener("input", function (e) {
+        const query = e.target.value.toLowerCase().trim();
+
+        productTiles.forEach((tile) => {
+          const name = tile.querySelector(".product-name").textContent.toLowerCase();
+          const category = tile.querySelector(".product-category").textContent.toLowerCase();
+
+          if (name.includes(query) || category.includes(query)) {
+            tile.style.display = "";
+          } else {
+            tile.style.display = "none";
+          }
+        });
+      });
+    </script>
   </body>
 </html>

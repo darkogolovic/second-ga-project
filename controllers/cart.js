@@ -7,7 +7,7 @@ const { isAuthenticated } = require("../middleware/authMiddleware");
 
 router.post('/add', async (req, res) => {
   try {
-    // Ako korisnik nije ulogovan, vrati grešku
+    
     if (!req.session.user) {
       return res.status(401).json({ error: 'You must be logged in to add to cart' });
     }
@@ -114,9 +114,8 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
 
     const total = user.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    // --- Slanje email-a ---
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com", // npr. smtp.gmail.com
+      host: "smtp.gmail.com", 
       port: 587,
       secure: false,
       auth: {
@@ -131,7 +130,7 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
         return res.status(404).json({ success: false, error: `Product ${item.name} not found.` });
       }
 
-      // Proveri da li ima dovoljno na lageru
+      
       if (product.quantity < item.quantity) {
         return res.status(400).json({
           success: false,
@@ -139,7 +138,7 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
         });
       }
 
-      // Oduzmi kupljenu količinu
+      
       product.quantity -= item.quantity;
       await product.save();
     }
@@ -151,7 +150,7 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
       from: `"Piljara" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Order Confirmation",
-      text: `Hi ${user.name},\n\nThank you for your order!\n\nItems:\n${itemsList}\n\nTotal: $${total.toFixed(2)}\n\nWe appreciate your business!`,
+      text: `Hi ${user.name},\n\nThank you for your order!\n\nItems:\n${itemsList}\n\nTotal: $${total.toFixed(2)}\n\nYour order will arrive at ${user.address} within 2 hours`,
     };
 
     await transporter.sendMail(mailOptions);

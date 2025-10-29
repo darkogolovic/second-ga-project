@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cartCount = document.getElementById("cartCount");
   const cartIcon = document.getElementById("cartIcon");
-  const forms = document.querySelectorAll(".add-to-cart-form");
+  const forms = document.querySelectorAll(".product-buy");
 
   forms.forEach((form) => {
     form.addEventListener("submit", async (e) => {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
       if (result.success) {
         showToast(`${data.quantity}kg added to cart`);
-        updateCartCount(result.totalItems);
+        updateCartCount(result.cart.reduce((sum, item) => sum + item.quantity, 0));;
       }
     });
   });
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (!res.ok) return;
     const data = await res.json();
-    updateCartCount(data.cart.length);
+    updateCartCount(0);
   }
 
   function updateCartCount(count) {
