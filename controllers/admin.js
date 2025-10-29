@@ -22,7 +22,7 @@ router.get('/add', isAdmin, (req, res) => {
 
 router.post('/add', isAdmin,upload.single('image'), async (req, res) => {
   try{
-    console.log(req.body)
+    
   const { name, description, price, category,quantity, } = req.body;
   const uploadResult = await cloudinary.uploader.upload(req.file.path);
    const newProduct = new Product({
@@ -66,5 +66,7 @@ router.get('/users', isAdmin, async (req, res) => {
   const users = await User.find();
   res.render('admin/users.ejs', { users });
 });
+
+
 
 module.exports = router;

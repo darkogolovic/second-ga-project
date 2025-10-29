@@ -170,6 +170,7 @@ router.post('/login',async (req,res)=>{
       role: user.role,
       cart:user.cart,
     };
+    await req.session.save();
     
 
    return res.redirect('/')
