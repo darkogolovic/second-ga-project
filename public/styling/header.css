@@ -9,13 +9,19 @@
 }
 
 .logo a {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #fff;
   text-decoration: none;
   font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
 }
-
+.a{
+  color: #38a169;
+}
 .header-right {
   display: flex;
   align-items: center;

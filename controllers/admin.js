@@ -62,10 +62,7 @@ router.get('/delete/:id', isAdmin, async (req, res) => {
   res.redirect('/admin/dashboard');
 });
 
-router.get('/users', isAdmin, async (req, res) => {
-  const users = await User.find();
-  res.render('admin/users.ejs', { users });
-});
+
 
 
 

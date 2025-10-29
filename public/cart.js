@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
       if (result.success) {
         showToast(`${data.quantity}kg added to cart`);
-        updateCartCount(result.cart.reduce((sum, item) => sum + item.quantity, 0));;
+        updateCartCount(result.cart.length);
       }
     });
   });
