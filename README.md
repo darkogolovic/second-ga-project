@@ -51,5 +51,5 @@ All product images are stored in **Cloudinary**, providing:
 ## 🌐 Live Demo
 
 Check out the live version of the app here:  
-👉 [Piljara — Online Store](https://piljara.onrender.com)
+👉 [Piljara — Online Store](https://piljara-ae841ee558a3.herokuapp.com/)
 
