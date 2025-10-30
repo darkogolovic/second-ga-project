@@ -155,7 +155,6 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    // isprazni korpu
     user.cart = [];
     await user.save();
 
